@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:samadhan/data/constants.dart';
 
@@ -8,7 +9,7 @@ class Complaint extends StatefulWidget {
 
 class _ComplaintState extends State<Complaint> {
   var _focusNode = new FocusNode();
-
+  final databaseReference = Firestore.instance;
   TextEditingController _nameController = new TextEditingController();
 
   TextEditingController _phoneController = new TextEditingController();
@@ -345,6 +346,41 @@ class _ComplaintState extends State<Complaint> {
                                 decorationStyle: TextDecorationStyle.solid)),
                       ),
                     ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    MaterialButton(
+                      padding: EdgeInsets.all(16),
+                      onPressed: () async {
+                        if (_formkey.currentState.validate()) {
+                          String refNum =
+                              "PWL${_nameController.text.substring(0, 3).toUpperCase()}${_phoneController.text}";
+                          print(refNum);
+                          await databaseReference
+                              .collection("complaints")
+                              .document(refNum)
+                              .setData({
+                            'name': _nameController.text,
+                            'phone': _phoneController.text,
+                            'house no': _houseController.text,
+                            'colony': _colonyController.text,
+                            'department': _selectedDepartment,
+                            'ward no': _wardNumber,
+                            'village': _village,
+                            'details': _detailsController.text
+                          }).then((value) => print("Success"));
+                          bottomSheet("SUCCESS!", refNum, context);
+                        }
+                      },
+                      color: Colors.black,
+                      textColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Text(
+                        "SUBMIT",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    )
                   ],
                 ),
               ),

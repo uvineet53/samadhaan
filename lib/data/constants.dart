@@ -157,3 +157,54 @@ var villages = [
   "Aatar Chahta",
   "Thappa",
 ];
+
+Widget bottomSheet(String title, String refNum, BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (context) {
+      return Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              title,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 46),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Icon(
+              Icons.check_circle_outline,
+              size: 200,
+              color: Colors.black,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Tracking Number:",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 30),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              refNum,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 36),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
