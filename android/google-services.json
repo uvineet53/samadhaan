@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "763984582097",
+    "firebase_url": "https://project-samadhan-e494a.firebaseio.com",
+    "project_id": "project-samadhan-e494a",
+    "storage_bucket": "project-samadhan-e494a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763984582097:android:4f0c461b0ffc3b6e477cf0",
+        "android_client_info": {
+          "package_name": "com.samadhan.samadhanApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763984582097-jfm4n8ublagn404edntlopka6joior4j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANJPpEKn1dR6XXSrqmbCCnK-GPOh_zTLs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "763984582097-jfm4n8ublagn404edntlopka6joior4j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
