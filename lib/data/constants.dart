@@ -67,6 +67,25 @@ var complaintText = RichText(
       ]),
 );
 
+var trackText = RichText(
+  text: TextSpan(
+      text: "Track",
+      style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 44,
+          letterSpacing: 1,
+          color: Colors.black),
+      children: <TextSpan>[
+        TextSpan(
+            text: "Complaint",
+            style: TextStyle(
+                letterSpacing: 1,
+                fontSize: 44,
+                color: Colors.grey[500],
+                fontFamily: "Sans Serif"))
+      ]),
+);
+
 var villages = [
   "Dhatir",
   "Allika",
@@ -203,6 +222,125 @@ Widget bottomSheet(String title, String refNum, BuildContext context) {
                   fontSize: 36),
             ),
           ],
+        ),
+      );
+    },
+  );
+}
+
+Widget trackSheet(String name, String phone, String date, String dept,
+    String currdept, String status, BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (context) {
+      return SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 20),
+          color: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Name:",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 20),
+              ),
+              Text(
+                name,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Phone Number:",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 20),
+              ),
+              Text(
+                phone,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Date of Filing Complaint:",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 20),
+              ),
+              Text(
+                date,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Department",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 20),
+              ),
+              Text(
+                dept,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Current Department",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 20),
+              ),
+              Text(
+                currdept,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Status",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 20),
+              ),
+              Text(
+                status,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30),
+              ),
+            ],
+          ),
         ),
       );
     },

@@ -1,9 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:samadhan/data/constants.dart';
 import 'package:samadhan/screens/complaint.dart';
+import 'package:samadhan/screens/tracking.dart';
 
-class Home extends StatelessWidget {
-  AnimationController _controller;
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+  Animation<double> _animation;
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _animationController = new AnimationController(
+        vsync: this, duration: Duration(milliseconds: 600));
+    _animation =
+        CurvedAnimation(parent: _animationController, curve: Curves.easeInCirc);
+    _animation.addListener(() => this.setState(() {}));
+    _animationController.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +40,10 @@ class Home extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Image.asset("assets/family.jpg"),
+                Image.asset(
+                  "assets/family.jpg",
+                  width: _animation.value * 400,
+                ),
                 brandText,
                 SizedBox(
                   height: 25,
@@ -56,7 +85,11 @@ class Home extends StatelessWidget {
                       width: 20,
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Tracking(),
+                        ));
+                      },
                       child: Container(
                         padding: EdgeInsets.all(10),
                         width: MediaQuery.of(context).size.width * .3,
