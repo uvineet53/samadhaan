@@ -48,6 +48,27 @@ var brandText = RichText(
                 fontFamily: "Sans Serif"))
       ]),
 );
+Widget niceText(String s1, String s2) {
+  return RichText(
+    text: TextSpan(
+        text: s1,
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 44,
+            letterSpacing: 1,
+            color: Colors.black),
+        children: <TextSpan>[
+          TextSpan(
+              text: s2,
+              style: TextStyle(
+                  letterSpacing: 1,
+                  fontSize: 44,
+                  color: Colors.grey[500],
+                  fontFamily: "Sans Serif"))
+        ]),
+  );
+}
+
 var complaintText = RichText(
   text: TextSpan(
       text: "File",
