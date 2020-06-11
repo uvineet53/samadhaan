@@ -82,6 +82,8 @@ class MessagesStream extends StatelessWidget {
         final messages = snapshot.data.documents;
         List<MessageBubble> messageBubbles = [];
         for (var message in messages) {
+          final ignored = message.data['Ignored'];
+
           final department = message.data['department'];
           final details = message.data['details'];
           final colony = message.data['colony'];
@@ -119,9 +121,12 @@ class MessagesStream extends StatelessWidget {
             complaint: details,
             adminremark: adminremark,
             deptremark: deptremark,
+            ignored: ignored,
           );
 
-          messageBubbles.add(messageBubble);
+          if (ignored == "") {
+            messageBubbles.add(messageBubble);
+          }
         }
         return Expanded(
           child: ListView(
@@ -148,9 +153,12 @@ class MessageBubble extends StatefulWidget {
       this.department,
       this.trackingId,
       this.adminremark,
-      this.deptremark});
+      this.deptremark,
+      this.ignored});
 
   final String complaintId;
+  final String ignored;
+
   final String name;
   final bool isMe;
   final String phone;
@@ -253,25 +261,6 @@ class _MessageBubbleState extends State<MessageBubble> {
                             },
                             child: Text("Change Remark"),
                           ),
-
-                          // SizedBox(
-                          //   height: 10,
-                          // ),
-                          // MaterialButton(
-                          //   elevation: 0.0,
-                          //   onPressed: () {
-
-                          //   },
-                          //   color: Colors.black,
-                          //   shape: RoundedRectangleBorder(
-                          //       borderRadius: BorderRadius.circular(10)),
-                          //   padding: EdgeInsets.all(10),
-                          //   textColor: Colors.white,
-                          //   child: Text(
-                          //     "SAVE",
-                          //     style: TextStyle(fontSize: 20),
-                          //   ),
-                          // ),
                           SizedBox(
                             height: 10,
                           ),
@@ -546,6 +535,21 @@ class _MessageBubbleState extends State<MessageBubble> {
                             ),
                           ],
                         ),
+                        FlatButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          color: Colors.black,
+                          textColor: Colors.white,
+                          onPressed: () {
+                            _firestore
+                                .collection("complaints")
+                                .document(widget.complaintId)
+                                .updateData(
+                              {'Ignored': "yes"},
+                            );
+                          },
+                          child: Text("Ignore"),
+                        )
                       ],
                     ),
                   ),

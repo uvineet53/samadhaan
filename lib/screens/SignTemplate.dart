@@ -3,15 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:samadhan/data/constants.dart';
 import 'package:samadhan/screens/deptscreen.dart';
-
 import 'adminscreen.dart';
 
 class SignTemp extends StatefulWidget {
   final String s1, s2;
   final Icon icon;
-
   SignTemp({this.s1, this.s2, this.icon});
-
   @override
   _SignTempState createState() => _SignTempState();
 }
