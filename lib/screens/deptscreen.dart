@@ -83,6 +83,8 @@ class MessagesStream extends StatelessWidget {
         final messages = snapshot.data.documents;
         List<MessageBubble> messageBubbles = [];
         for (var message in messages) {
+          final ignored = message.data['Ignored'];
+          final currentDepartment = message.data['current department'];
           final department = message.data['department'];
           final details = message.data['details'];
           final colony = message.data['colony'];
@@ -120,27 +122,13 @@ class MessagesStream extends StatelessWidget {
             complaint: details,
             adminremark: adminremark,
             deptremark: deptremark,
+            ignored: ignored,
+            currentDepartment: currentDepartment,
           );
-//          "None",
-//        "Animal Husbandry",
-//        "BDPO",
-//        "Civil Hospital",
-//        "DHBVN(Urban)",
-//        "DHBVN(Rural)",
-//        "Distt. Town planner ",
-//        "Education(Elementary)",
-//        "Education(Higher)",
-//        "Fire Department",
-//        "HVPNL",
-//        "Irrigation",
-//        "Nagar Parishad",
-//        "PWD",
-//        "PUBLIC HEALTH(Water)",
-//        "Public health(Sewage)",
-//        "Public health (Reny Well)",
-//        "Social Welfare",
-//        "Tehsil"
-          dept(department, messageBubbles, messageBubble);
+
+          if (ignored == "") {
+            dept(currentDepartment, messageBubbles, messageBubble);
+          }
         }
 
         return Expanded(
@@ -245,8 +233,12 @@ class MessageBubble extends StatefulWidget {
       this.department,
       this.trackingId,
       this.adminremark,
-      this.deptremark});
+      this.deptremark,
+      this.ignored,
+      this.currentDepartment});
 
+  final String ignored;
+  final String currentDepartment;
   final String complaintId;
   final String name;
   final bool isMe;
@@ -607,7 +599,7 @@ class _MessageBubbleState extends State<MessageBubble> {
                               ),
                             ),
                             Text(
-                              ' ${widget.department}',
+                              ' ${widget.currentDepartment}',
                               style: TextStyle(
                                 fontSize: 18.0,
                                 color: Colors.black87,
@@ -678,6 +670,21 @@ class _MessageBubbleState extends State<MessageBubble> {
                             ],
                           ),
                         ),
+                        FlatButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          color: Colors.black,
+                          textColor: Colors.white,
+                          onPressed: () {
+                            _firestore
+                                .collection("complaints")
+                                .document(widget.complaintId)
+                                .updateData(
+                              {'Ignored': "yes"},
+                            );
+                          },
+                          child: Text("Ignore"),
+                        )
                       ],
                     ),
                   ),
