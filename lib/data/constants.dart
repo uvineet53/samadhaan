@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 
 List<String> depts = [
   "None",
+  "Animal Husbandry",
+  "BDPO",
+  "Civil Hospital",
+  "DHBVN(Urban)",
+  "DHBVN(Rural)",
+  "Distt. Town planner ",
+  "Education(Elementary)",
+  "Education(Higher)",
+  "Fire Department",
+  "HVPNL",
+  "Irrigation",
   "Nagar Parishad",
   "PWD",
   "PUBLIC HEALTH(Water)",
-  "Public health(severage)",
-  "Public health (reny well)",
-  "Irrigation",
-  "DHBVN(urban)",
-  "DHBVN(rural)",
-  "HNPN",
-  "Civil Hospital",
-  "Fire department",
-  "Dist Town planner ",
+  "Public health(Sewage)",
+  "Public health (Reny Well)",
   "Social Welfare",
-  "Education(Elementary)",
-  "Education(Higher)",
-  "Animal Husbandry",
-  "BTPO",
   "Tehsil"
 ];
 
@@ -365,5 +365,23 @@ Widget trackSheet(String name, String phone, String date, String dept,
         ),
       );
     },
+  );
+}
+
+Widget PlatformAlertDialog(BuildContext context, String title, var message,
+    Function onPressed, String btnTitle) {
+  return AlertDialog(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+    title: Text(title),
+    content: message,
+    actions: <Widget>[
+      FlatButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        color: Colors.black,
+        textColor: Colors.white,
+        onPressed: onPressed,
+        child: Text(btnTitle),
+      )
+    ],
   );
 }
