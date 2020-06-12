@@ -10,7 +10,7 @@ class Loader extends StatefulWidget {
 class _LoaderState extends State<Loader> {
   void moveToHome() async {
     await Future.delayed(Duration(milliseconds: 1500));
-    Navigator.of(context).push(MaterialPageRoute(
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
       builder: (context) => Home(),
     ));
   }

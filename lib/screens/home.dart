@@ -1,60 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:samadhan/data/constants.dart';
-import 'package:samadhan/screens/complaint.dart';
-import 'package:samadhan/screens/tracking.dart';
+import 'package:samadhan/screens/SignTemplate.dart';
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<double> _animation;
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _animationController = new AnimationController(
-        vsync: this, duration: Duration(milliseconds: 600));
-    _animation =
-        CurvedAnimation(parent: _animationController, curve: Curves.easeInCirc);
-    _animation.addListener(() => this.setState(() {}));
-    _animationController.forward();
-  }
-
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Image.asset(
-                  "assets/family.jpg",
-                  width: _animation.value * 400,
+                  "assets/sign.png",
+                  height: MediaQuery.of(context).size.height * .55,
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 brandText,
                 SizedBox(
-                  height: 25,
+                  height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     InkWell(
                       onTap: () {
+                        var icon = Icon(
+                          Icons.verified_user,
+                          size: 200,
+                        );
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Complaint(),
+                          builder: (context) => SignTemp(
+                            s1: "Admin",
+                            s2: "Login",
+                            icon: icon,
+                          ),
                         ));
                       },
                       child: Container(
@@ -68,11 +51,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             Icon(
-                              Icons.edit,
+                              Icons.verified_user,
                               color: Colors.black,
                               size: 70,
                             ),
-                            Text("COMPLAINT",
+                            Text("ADMIN",
                                 style: TextStyle(
                                     letterSpacing: 1,
                                     color: Colors.black,
@@ -82,12 +65,20 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       ),
                     ),
                     SizedBox(
-                      width: 20,
+                      width: 10,
                     ),
                     InkWell(
                       onTap: () {
+                        var icon = Icon(
+                          Icons.local_printshop,
+                          size: 200,
+                        );
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Tracking(),
+                          builder: (context) => SignTemp(
+                            s1: "Dept",
+                            s2: "Login",
+                            icon: icon,
+                          ),
                         ));
                       },
                       child: Container(
@@ -101,20 +92,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             Icon(
-                              Icons.track_changes,
+                              Icons.local_printshop,
                               color: Colors.black,
                               size: 70,
                             ),
-                            Text(
-                              "TRACK",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            )
+                            Text("DEPARTMENT",
+                                style: TextStyle(
+                                    letterSpacing: 1,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold))
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 )
               ],
