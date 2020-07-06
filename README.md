@@ -1,6 +1,10 @@
 # samadhan
 
-A new Flutter project.
+https://play.google.com/store/apps/details?id=com.samadhan.samadhanApp
+Samadhan- A smart administration system, Now available at play store for all the android users of district Palwal.
+Click on the link above to download the app.
+
+Will be updating the Readme soon!
 
 ## Getting Started
 
